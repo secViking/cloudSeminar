@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <title>My website</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-color: #f1f1f1;
+      }
+
+      header {
+        background-color: #333;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+
+      main {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 18px;
+      }
+
+      button {
+        background-color: #333;
+        color: white;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      img {
+        width: 100%;
+        border-radius: 4px;
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>My OpenGPT generated website</h1>
+    </header>
+    <main>
+      <input type="text" id="input-field" placeholder="Enter some text">
+      <button onclick="sendData()">Click me!</button>
+      <br>
+      <button onclick="showPicture()">Show picture</button>
+      <button onclick="hidePicture()">Hide picture</button>
+      <br>
+      <img id="picture" src="https://i.redd.it/t2w68kymisd11.jpg" style="display: none;">
+    </main>
+    <footer>
+      This page was written using OpenAI's GPT-3. Copyright &copy; OpenAI.
+    </footer>
+    <script>
+      function sendData() {
+        // Get the value of the input field
+        var inputValue = document.getElementById("input-field").value;
+
+        // Send the data to your server or wherever you want to process it
+        // (Note: In a real application, you would need to handle the response from the server)
+        // You can use XMLHttpRequest, fetch, or any other method to send the data
+      }
+
+      function showPicture() {
+        document.getElementById("picture").style.display = "block";
+      }
+
+      function hidePicture() {
+        document.getElementById("picture").style.display = "none";
+      }
+    </script>
+  </body
