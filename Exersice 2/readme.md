@@ -2,6 +2,7 @@ Exercise 2
 
 Links:
 Site Link: https://nxoai43bln5zgfgc72jkvtta64.apigateway.il-jerusalem-1.oci.customer-oci.com/
+
 getUserInput function Link: https://aqnio4nprc6ge6kqabg4ogo2vy.apigateway.il-jerusalem-1.oci.customer-oci.com/
 
 
