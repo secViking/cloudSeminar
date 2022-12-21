@@ -7,7 +7,9 @@ getUserInput function Link: https://aqnio4nprc6ge6kqabg4ogo2vy.apigateway.il-jer
 
 
 In this exercise I created 2 new functions:
+
 	newSite - same as exercise one with the new functionality of submitting user input
+
 	getUserInput - getting the user input and inserting it into a txt file in the bucket.
 
 The new site submits the user input by calling the getUserInput function endpoint.
