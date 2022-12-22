@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <html>
   <head>
@@ -44,7 +42,7 @@
         background-color: #333;
         color: white;
         padding: 12px 20px;
-        margin: 8px 0;
+        margin: 20px 0px;
         border: none;
         border-radius: 4px;
         cursor: pointer;
@@ -76,15 +74,20 @@
       <h1>My OpenGPT generated website</h1>
     </header>
     <main>
-      <input type="text" id="input-field" placeholder="Enter some text">
-      <button onclick="sendData()">Click me!</button>
+      <input type="text" id="name" placeholder="Enter your name">
+      <input type="text" id="email" placeholder="Enter your email">
+      <input type="text" id="description" placeholder="Enter description">
+      <button onclick="sendData()">Submit</button>
       <button onclick="clearData()">Clear</button>
+      <button onclick="deleteData()">Delete My Data</button>
       <br>
-      <button onclick="showPicture()">Show picture</button>
-      <button onclick="hidePicture()">Hide picture</button>
       <br>
       <img id="picture" src="https://i.redd.it/t2w68kymisd11.jpg" style="display: none;">
+      <img id="picture_sad" src="https://i.pinimg.com/736x/1d/4d/d6/1d4dd63c4e33550ed33b5c7c84bbb6a2.jpg" style="display: none;">
       <p id="thank-you" style="display: none;">Thank you for submitting info</p>
+      <p id="updated" style="display: none;">Your data was updated</p>
+      <p id="deleted" style="display: none;">Your data was deleted</p>
+
 
 
 
@@ -93,27 +96,92 @@
       This page was written using OpenAI's GPT-3. Copyright &copy; OpenAI.
     </footer>
     <script>
-      function sendData() {
+      async function sendData() {
         // Get the value of the input field
-        var input = document.getElementById("input-field").value;
-     
+        const email = document.getElementById("email").value;
+        const name = document.getElementById("name").value;
+        const description = document.getElementById("description").value;
+        const tosend = { "name" : name,
+                        "email" : email,
+                         "description" : description,
+                          "delete" : false }
+        console.log(JSON.stringify(tosend))
 
-      fetch('https://aqnio4nprc6ge6kqabg4ogo2vy.apigateway.il-jerusalem-1.oci.customer-oci.com/', {
+      let response = await fetch('https://nxoai43bln5zgfgc72jkvtta64.apigateway.il-jerusalem-1.oci.customer-oci.com/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'mode' : 'cors'
         },
-        body: JSON.stringify({ input })
+        body: JSON.stringify(tosend)
       })
-      .then((response) => {
-        console.log(response.text());
-        document.getElementById("thank-you").style.display = "block";
-        document.getElementById("picture").style.display = "block";
-        document.getElementById('input-field').value = "";
+      //.then(async (response) => {
+        let resp =  await response.text();
+        console.log(resp);
+        
+        if (resp == "file found and updated")
+        {
+          document.getElementById("thank-you").style.display = "none";
+          document.getElementById("updated").style.display = "block";
+          document.getElementById("picture").style.display = "block";
+          document.getElementById('name').value = "";
+          document.getElementById('email').value = "";
+          document.getElementById('description').value = "";  
+          document.getElementById("picture_sad").style.display = "none";
+          document.getElementById("deleted").style.display = "none";
 
-      });
+
+        }
+        else if (resp == "file not found and created")
+        {
+          document.getElementById("updated").style.display = "none";
+          document.getElementById("thank-you").style.display = "block";
+          document.getElementById("picture").style.display = "block";
+          document.getElementById('name').value = "";
+          document.getElementById('email').value = "";
+          document.getElementById('description').value = "";
+          document.getElementById("picture_sad").style.display = "none";
+          document.getElementById("deleted").style.display = "none";
+
+
+        } 
+
+      //});
     
+      }
+
+      async function deleteData(){
+          const email = document.getElementById("email").value;
+          const name = document.getElementById("name").value;
+          const description = document.getElementById("description").value;
+          const tosend = { "name" : name,
+                          "email" : email,
+                           "description" : description,
+                            "delete" : true }
+          console.log(JSON.stringify(tosend))
+
+          let response = await fetch('https://nxoai43bln5zgfgc72jkvtta64.apigateway.il-jerusalem-1.oci.customer-oci.com/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(tosend)
+          })
+
+          let resp =  await response.text();
+          console.log(resp);
+
+          if (resp == "file found and deleted")
+          {
+          document.getElementById("thank-you").style.display = "none";
+          document.getElementById("updated").style.display = "none";
+          document.getElementById("deleted").style.display = "block";
+          document.getElementById("picture").style.display = "none";
+          document.getElementById('name').value = "";
+          document.getElementById('email').value = "";
+          document.getElementById('description').value = "";  
+          document.getElementById("picture_sad").style.display = "block";
+          }
+
       }
 
       function showPicture() {
@@ -124,12 +192,14 @@
         document.getElementById("picture").style.display = "none";
       }
       function clearData() {
-        document.getElementById("picture").style.display = "none";
-        document.getElementById('input-field').value = ""
         document.getElementById("thank-you").style.display = "none";
-      }
+        document.getElementById("updated").style.display = "none";
+        document.getElementById("deleted").style.display = "none";
+        document.getElementById("picture").style.display = "none";
+        document.getElementById('name').value = "";
+        document.getElementById('email').value = "";
+        document.getElementById('description').value = "";  
+        document.getElementById("picture_sad").style.display = "none";      }
 
     </script>
   </body>
-
-

@@ -2,17 +2,22 @@ Exercise 2
 
 Links:
 Site Link: https://nxoai43bln5zgfgc72jkvtta64.apigateway.il-jerusalem-1.oci.customer-oci.com/
-getUserInput function Link: https://aqnio4nprc6ge6kqabg4ogo2vy.apigateway.il-jerusalem-1.oci.customer-oci.com/
 
 
-In this exercise I created 2 new functions:
-	newSite - same as exercise one with the new functionality of submitting user input
-	getUserInput - getting the user input and inserting it into a txt file in the bucket.
+In this exercise I enhance the previous site to handle user data.
+The application have one function the handle GET and POST requests.
 
-The new site submits the user input by calling the getUserInput function endpoint.
+GET - access to site by getting index.html file from object storage.
+POST - can be use to perform 3 methos: update, create delete.
 
-I have created two new gateways, one for each new function, and configured the CORS to allow all origins and methods in order to allow access to the getUserInput function between the two different gateways.
+The application demonstarte a simple use case of users form/landing page submission.
+The possible actions:
 
-Note: I have created two different gateways because I got an error(“Deployment corresponding to specified pathPrefix already exists”) when I tried to create a new deployment in the same gateway while using a different pathPrefix.
+CREATE - When the user submits data - If it is the first time we see this email, a file in the bucket will be created with the email hash as a file name.
+UPDATE - When the user submits data with already used email - the file content will be updated with the new one.
+DELETE - IF a user wishes to delete his data - the file will be deleted from the bucket.
+
+
+
 
 
