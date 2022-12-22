@@ -13,7 +13,9 @@ The application demonstarte a simple use case of users form/landing page submiss
 The possible actions:
 
 CREATE - When the user submits data - If it is the first time we see this email, a file in the bucket will be created with the email hash as a file name.
+
 UPDATE - When the user submits data with already used email - the file content will be updated with the new one.
+
 DELETE - IF a user wishes to delete his data - the file will be deleted from the bucket.
 
 
